@@ -227,39 +227,67 @@
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     }
 
-    function gCountAndBar(){
-        /*CountUP Trigger*/
-        $('.gutentor-single-item-number,.gutentor-counter-number-main').each(function() {
-            let gThis = $(this);
-            if( gIsEleInView(gThis) ){
-                if( !gThis.hasClass('g-c-loaded')){
-                    gThis.addClass('g-c-loaded')
-                    gCountUp(gThis)
-                }
+    function gTriggerCountUp(gThis){
+        if( gIsEleInView(gThis) ){
+            if( !gThis.hasClass('g-c-loaded')){
+                gThis.addClass('g-c-loaded')
+                gCountUp(gThis)
             }
-        });
+        }
+    }
 
-        /*easyPieChart Trigger*/
-        $('.gutentor-progressbar-circular,.gutentor-element-progressbar-circular').each(function() {
-            let gThis = $(this);
-            if( gIsEleInView(gThis) ){
-                if( !gThis.hasClass('g-c-loaded')){
-                    gThis.addClass('g-c-loaded')
-                    gEasyPieChart(gThis)
-                }
+    function gTriggerPieChart(gThis){
+        if( gIsEleInView(gThis) ){
+            if( !gThis.hasClass('g-c-loaded')){
+                gThis.addClass('g-c-loaded')
+                gEasyPieChart(gThis)
             }
-        });
+        }
+    }
 
-        /*easyPieChart Trigger*/
-        $('.gutentor-porgress-bar-item .progressbar,.gutentor-element-progressbar-box .gutentor-element-progressbar-horizontal').each(function() {
-            let gThis = $(this);
-            if( gIsEleInView(gThis) ){
-                if( !gThis.hasClass('g-c-loaded')){
-                    gThis.addClass('g-c-loaded')
-                    gThis.css('width', gThis.attr("data-width") + "%");
-                }
+    function gAddLoaded(gThis){
+        if( gIsEleInView(gThis) ){
+            if( !gThis.hasClass('g-c-loaded')){
+                gThis.addClass('g-c-loaded')
+                gThis.css('width', gThis.attr("data-width") + "%");
             }
-        });
+        }
+    }
+
+    function gCountAndBar($wrap = null){
+        if( $wrap ){
+            /*CountUP Trigger*/
+            $wrap.find('.gutentor-single-item-number,.gutentor-counter-number-main').each(function() {
+                gTriggerCountUp($(this))
+            });
+
+            /*easyPieChart Trigger*/
+            $wrap.find('.gutentor-progressbar-circular,.gutentor-element-progressbar-circular').each(function() {
+                gTriggerPieChart($(this))
+            });
+
+            /*easyPieChart Trigger*/
+            $wrap.find('.gutentor-porgress-bar-item .progressbar,.gutentor-element-progressbar-box .gutentor-element-progressbar-horizontal').each(function() {
+                gAddLoaded($(this))
+            });
+        }
+        else{
+            /*CountUP Trigger*/
+            $('.gutentor-single-item-number,.gutentor-counter-number-main').each(function() {
+                gTriggerCountUp($(this))
+            });
+
+            /*easyPieChart Trigger*/
+            $('.gutentor-progressbar-circular,.gutentor-element-progressbar-circular').each(function() {
+                gTriggerPieChart($(this))
+            });
+
+            /*easyPieChart Trigger*/
+            $('.gutentor-porgress-bar-item .progressbar,.gutentor-element-progressbar-box .gutentor-element-progressbar-horizontal').each(function() {
+                gAddLoaded($(this))
+            });
+        }
+
     }
     gCountAndBar()
     $(window).scroll( function(){
@@ -1069,34 +1097,34 @@
 
     function gRefreshJS($wrap){
         /*Counter and Bar*/
-        gCountAndBar()
+        gCountAndBar($wrap)
 
         /*Initilized disabled*/
-        $('.gutentor-post-footer.g-ap-load-more-template a.gutentor-button').each(function() {
+        $wrap.find('.gutentor-post-footer.g-ap-load-more-template a.gutentor-button').each(function() {
             gPageDisabled($(this))
         });
 
         /*Slick*/
         if (typeof $.fn.slick !== 'undefined') {
-            $('.gutentor-slider-wrapper').each(function() {
+            $wrap.find('.gutentor-slider-wrapper').each(function() {
                 gSlick($(this))
             });
-            $('.gutentor-module-slider-row').each(function() {
+            $wrap.find('.gutentor-module-slider-row').each(function() {
                 gSlick($(this))
             });
-            $('.gutentor-carousel-row').each(function() {
+            $wrap.find('.gutentor-carousel-row').each(function() {
                 gSlick($(this))
             });
-            $('.gutentor-image-carousel-row').each(function() {
+            $wrap.find('.gutentor-image-carousel-row').each(function() {
                 gSlick($(this))
             });
-            $('.gutentor-module-carousel-row').each(function() {
+            $wrap.find('.gutentor-module-carousel-row').each(function() {
                 gSlick($(this))
             });
         }
 
         // Gutentor Countdown
-        $('.gutentor-countdown-wrapper').each(function() {
+        $wrap.find('.gutentor-countdown-wrapper').each(function() {
             gCountDown($(this));
         });
 
@@ -1105,13 +1133,13 @@
 
         /*Acme Ticker*/
         if (typeof $.fn.AcmeTicker !== 'undefined') {
-            $('.gutentor-post-module-p5').each(function() {
+            $wrap.find('.gutentor-post-module-p5').each(function() {
                 gAcmeTicker($(this));
             });
         }
 
         /*edd add to cart*/
-        $('.g-edd-cart').each(function() {
+        $wrap.find('.g-edd-cart').each(function() {
             gEddCartIcon($(this))
         });
 
@@ -1123,7 +1151,7 @@
 
         /*sticky sidebar*/
         if (typeof $.fn.theiaStickySidebar !== 'undefined') {
-            $('.gutentor-enable-sticky-column').each(function() {
+            $wrap.find('.gutentor-enable-sticky-column').each(function() {
                 gTheiaStickySidebar($(this))
             });
         }
@@ -1272,10 +1300,8 @@
         });
 
         /* Module Accordion*/
-        gDocument.on('click', '.gutentor-module-accordion-item-heading', function(e) {
-
-            let gThis = $(this),
-                a_g_p = gThis.closest('.gutentor-module-accordion'),
+        function moduleAccordion(gThis){
+            let a_g_p = gThis.closest('.gutentor-module-accordion'),
                 a_item = gThis.closest('.gutentor-module-accordion-item'),
                 a_details = a_item.find('.gutentor-module-accordion-body'),
                 a_o_items = a_item.siblings('.gutentor-module-accordion-item'),
@@ -1302,7 +1328,16 @@
 
                 gRefreshJS(a_details);
             }
+        }
+        gDocument.on('click', '.gutentor-module-accordion-item-heading', function(e) {
+            moduleAccordion($(this))
             e.preventDefault();
+        });
+        gDocument.on('keypress', '.gutentor-module-accordion-item-heading', function(e) {
+            if( e.keyCode == 13 ){
+                moduleAccordion($(this))
+                e.preventDefault();
+            }
         });
 
         /* Table of content Accordion*/
@@ -1323,9 +1358,8 @@
         });
 
         /* Module Tab*/
-        gDocument.on('click', '.gutentor-module-tabs-item', function() {
-            let gThis = $(this),
-                gThisIndex = gThis.index(),
+        function moduleTabs(gThis){
+            let gThisIndex = gThis.index(),
                 gThisWrap = gThis.closest('.gutentor-module-tabs-wrap'),
                 gThisWrapID = gThisWrap.data('id'),
                 gThisContentID = '.gm-tc-' + gThisWrapID;
@@ -1339,7 +1373,16 @@
 
             /*Slick Fixed*/
             gRefreshJS(gThisWrap.find(gThisContentID).eq(gThisIndex));
+        }
+        gDocument.on('click', '.gutentor-module-tabs-item', function(e) {
+            moduleTabs($(this));
             e.preventDefault();
+        });
+        gDocument.on('keypress', '.gutentor-module-tabs-item', function(e) {
+            if( e.keyCode == 13 ){
+                moduleTabs($(this))
+                e.preventDefault();
+            }
         });
 
         /*Counter*/
