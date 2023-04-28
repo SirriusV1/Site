@@ -704,6 +704,7 @@
   */
   .single_accourdion {
     margin-bottom: 15px;
+    position: relative;
   }
   .single_accourdion:last-child{
     margin-bottom: 0 !important;
@@ -864,7 +865,7 @@
   }
   
   ul.accordion--4 li .bgDescription {
-    background: transparent url(./img/gallery/bgDescription.png) repeat-x top left;
+    background: transparent;
     height: 340px;
     position: absolute;
     bottom: 0px;
@@ -943,10 +944,69 @@
   }
   
   .accor_wrapper .single_accordion{
-    background: #000 url(./img/gallery/gallery-e1.jpg) no-repeat center center;
+    background: #000;
     background-size: cover;
   }
-  
+
+  /* Title Icon Css */
+  span.htmega-accordion-title-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  span.htmega-accordion-title-icon svg{
+    width: 30px;
+  }
+  .htmega-title-icon-align-right .htmega-accordion-title-icon{
+    left: auto;
+    right: 0;
+  }
+  .htmega-accordion-seperator-yes.single_accourdion::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: auto;
+    background: #000;
+    left: 84px;
+    top: 15px;
+    bottom: 15px;
+}
+.htmega-accordion-short-des{
+    display: block;
+    font-size: 14px;
+}
+.htmega-items-hedding{
+    margin: 0;
+}
+.elementor-widget-htmega-accordion-addons .accordion{
+    display:block!important;
+}
+
+/* Accorion icon for Short desrioption style */
+.htb-short-active-yes .htmega-accourdion-title .htmega-items-hedding .open-accourdion {
+    opacity: 1;
+    visibility: visible;
+}
+.htb-short-active-yes .htmega-accourdion-title .htmega-items-hedding .close-accourdion {
+    opacity: 0;
+    visibility: hidden;
+}
+.htb-short-active-yes .htmega-accourdion-title .htmega-items-hedding.htb-short-active  .close-accourdion {
+    opacity:1;
+    visibility: visible;
+}
+.htb-short-active-yes .htmega-accourdion-title .htmega-items-hedding.htb-short-active .open-accourdion {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
   /* 
   *Progress Bar Style 
   */
@@ -2933,6 +2993,9 @@
   .htmega-brands-area.htmega-brands-style-1{
     display: flex;
     flex-wrap: wrap;
+  }
+  .htmega-brands-area {
+    overflow: hidden;
   }
   .single-partner {
     -webkit-box-flex: 1;
@@ -7732,7 +7795,14 @@ ul.htmega-testimonial-rating * {
    * Tab Style
    */
   
-  
+   .htmega-tab-area:not(.htmega-tab-style-5) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .htmega-tab-area:not(.htmega-tab-style-5) .htb-tab-content{
+        width: 100%;
+    }
   /*Tab Style 01*/
   .htmega-tab-nav a {
       color: #575757;
@@ -11113,9 +11183,11 @@ justify-content: center;
   .htmega-counter-icon svg {
     width: 20px;
   }
-  .htmega-counter-area .htmega-counter-img{
-    display: inline-block;
-  }
+  .htmega-counter-area .htmega-counter-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
   
   /*Counterup Style 1*/
   .htmega-counter-style-1 {
@@ -12361,7 +12433,9 @@ justify-content: center;
     padding-left: 25px;
     padding-right: 25px;
   }
-  
+  .htmega-masonry-activation .htmega-singleimage-grid{
+    overflow: hidden;
+  }
   .htmega-singleimage-grid .thumb img {
       width: 100%;
   }
@@ -13228,6 +13302,7 @@ justify-content: center;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    overflow: hidden;
   }
   
   .htmega-swiper-pagination .swiper-pagination-bullet {
