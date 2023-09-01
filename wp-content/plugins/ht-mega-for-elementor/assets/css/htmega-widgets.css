@@ -13,6 +13,9 @@
 .htmega-d-none{
     display:none;
 }
+body:has( .htmega_mega_menu ){
+    overflow-x:hidden;
+}
 /* Section Title style */
 .htmega-section-title{
     position: relative;
@@ -4057,7 +4060,9 @@ ul.htmega-testimonial-rating * {
   /*
   * Form Style
   */
-  .htmega-form-wrapper form input,.htmega-form-wrapper form textarea{
+  .htmega-form-wrapper form input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-wrapper form textarea,
+  .htmega-form-wrapper form select {
     width: 100%;
     border-radius: 0;
   }
@@ -4073,7 +4078,8 @@ ul.htmega-testimonial-rating * {
   }
   
   /* Form Style One*/
-  .htmega-form-style-1 form input {
+  .htmega-form-style-1 form input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-1 select {
       height: 55px;
       font-weight: 300;
       margin-top: 30px;
@@ -4084,7 +4090,8 @@ ul.htmega-testimonial-rating * {
       color: #a2a2a2;
   }
   
-  .htmega-form-style-1 form input:focus {
+  .htmega-form-style-1 form input:focus,
+  .htmega-form-style-1 select:focus {
       border: 1px solid #18012c;
   }
   
@@ -4131,7 +4138,8 @@ ul.htmega-testimonial-rating * {
       margin-bottom: 11px;
   }
   
-  .htmega-form-style-2 input {
+  .htmega-form-style-2 input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-2 select {
       height: 55px;
       font-weight: 300;
       margin-bottom: 30px;
@@ -4143,7 +4151,8 @@ ul.htmega-testimonial-rating * {
       color: #ffffff;
   }
   
-  .htmega-form-style-2 input:focus {
+  .htmega-form-style-2 input:focus,
+  .htmega-form-style-2 select:focus {
       border: 1px solid #18012c;
   }
   
@@ -4185,7 +4194,8 @@ ul.htmega-testimonial-rating * {
   }
   
   /* Form style 3 */
-  .htmega-form-style-3 form input {
+  .htmega-form-style-3 form input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-3 form select{
       color: #c0c0c0;
       font-weight: 300;
       font-style: italic;
@@ -4198,7 +4208,8 @@ ul.htmega-testimonial-rating * {
       font-family: "Montserrat", sans-serif;
   }
   
-  .htmega-form-style-3 form input:focus {
+  .htmega-form-style-3 form input:focus,
+  .htmega-form-style-3 form select:focus {
       border-bottom: 1px solid #18012c;
   }
   
@@ -4254,7 +4265,8 @@ ul.htmega-testimonial-rating * {
     flex-basis: 84%;
   }
   
-  .htmega-form-style-4 form .input-box input {
+  .htmega-form-style-4 form .input-box input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-4 form .input-box select {
       background: #a2a2a2;
       color: #a2a2a2;
       font-weight: 300;
@@ -4266,7 +4278,8 @@ ul.htmega-testimonial-rating * {
       font-weight: "Montserrat", sans-serif;
   }
   
-  .htmega-form-style-4 form .input-box input:focus {
+  .htmega-form-style-4 form .input-box input:focus,
+  .htmega-form-style-4 form .input-box select:focus {
       border: 1px solid #18012c;
   }
   
@@ -4306,7 +4319,8 @@ ul.htmega-testimonial-rating * {
       padding: 30px;
   }
   
-  .htmega-form-style-5 form input {
+  .htmega-form-style-5 form input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-5 form select {
       margin-top: 30px;
       border: 1px solid #ffffff;
       height: 50px;
@@ -4316,7 +4330,8 @@ ul.htmega-testimonial-rating * {
       font-family: "Montserrat", sans-serif;
   }
   
-  .htmega-form-style-5 form input:focus {
+  .htmega-form-style-5 form input:focus,
+  .htmega-form-style-5 form select:focus {
       border: 1px solid #18012c;
   }
   
@@ -4351,7 +4366,8 @@ ul.htmega-testimonial-rating * {
   }
   
   /* Form Style 6 */
-  .htmega-form-style-6 form input {
+  .htmega-form-style-6 form input:not([type="checkbox"],[type="radio"],[type="file"]),
+  .htmega-form-style-6 form select {
       background: #f3f3f3;
       border: 0 none;
       height: 55px;
@@ -4360,7 +4376,8 @@ ul.htmega-testimonial-rating * {
       font-family: "Montserrat", sans-serif;
   }
   
-  .htmega-form-style-6 form input:focus {
+  .htmega-form-style-6 form input:not([type="checkbox"],[type="radio"],[type="file"]):focus,
+  .htmega-form-style-6 form select:focus {
       border: 1px solid #18012c;
   }
   
@@ -4414,14 +4431,18 @@ ul.htmega-testimonial-rating * {
       outline: none;
   }
   
+  .htmega-form-wrapper .wpcf7-form-control .wpcf7-list-item{
+    margin: 0 1em 0 0;
+
+  }
   /*
    * LogIn Style
    */
-  .htmega-login-form-wrapper form input:not([type="checkbox"]){
+  .htmega-login-form-wrapper form input:not([type="checkbox"],[type="radio"],[type="file"]){
     width: 100%;
   }
   
-  .htmega-login-form-wrapper form input:not([type="checkbox"]){
+  .htmega-login-form-wrapper form input:not([type="checkbox"],[type="radio"],[type="file"]){
     padding: 0 15px;
   }
 
@@ -19017,8 +19038,6 @@ justify-content: center;
     align-items: center;
 }
 
-
-
 .htmega-error-notice {
     background: #efefef;
     padding: 10px 17px;
@@ -19026,11 +19045,6 @@ justify-content: center;
     font-size: 19px;
     color: #8b4343;
 }
-
-
-
-
-
 
 /* Load More Button*/
 .htmega-pro-load-more-wrapper {
